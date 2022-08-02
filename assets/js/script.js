@@ -14,6 +14,24 @@ var hour = {
     "17":[]
 }
 
+// Save hour values to localStorage
+var setHours = function() {
+    /* add tasks to localStorage */
+    localStorage.setItem("hour", JSON.stringify(hour));
+}
+
+// Get hour values from localStorage
+var getHour = function() {
+    var loadHour = JASON.parse(localStorage.getItem("hour"));
+    if (loadHour) {
+        hour = loadHour
+        $.each(hour, function(time, hour) {
+            var timeDiv = $("#" + time);
+            createTask(hour, timeDiv);
+        })
+    }
+}
+console.log(getHour);
 
 // check applying css
 var timeCheck = $(".timeCheck");
