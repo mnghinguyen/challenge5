@@ -1,19 +1,20 @@
 var now = moment().format("MMM Do, YYYY");
 $("#currentDay").text(now);
-// Change background
-var hour = moment().format("a A");
-$(".hour").text("9AM");
 
-    function timeCheck() {
-    $("#timeCheck").addClass("present");
-    var timeCheck = moment().isBefore("HH");
-    if (timeCheck === true){
-        $("#timeCheck").addClass("past");} else if 
-        (timeCheck === false) {
-        $("#timeCheck").addClass("future");
-        } else {
-        return;
-        }
+// set hour
+var hour = {
+    "9":[],
+    "10":[],
+    "11":[],
+    "12":[],
+    "13":[],
+    "14":[],
+    "15":[],
+    "16":[],
+    "17":[]
 }
 
 
+// check applying css
+var timeCheck = $(".timeCheck");
+timeCheck.addClass("present");
