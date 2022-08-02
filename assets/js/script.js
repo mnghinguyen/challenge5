@@ -16,23 +16,26 @@ var hour = {
 
 // Save hour values to localStorage
 var setHours = function() {
-    /* add tasks to localStorage */
     localStorage.setItem("hour", JSON.stringify(hour));
 }
 
-// Get hour values from localStorage
-var getHour = function() {
-    var loadHour = JASON.parse(localStorage.getItem("hour"));
-    if (loadHour) {
-        hour = loadHour
-        $.each(hour, function(time, hour) {
-            var timeDiv = $("#" + time);
-            createTask(hour, timeDiv);
-        })
-    }
-}
-console.log(getHour);
+// time check applying css
+function timeCheck() {
+    // Get hour values from localStorage
+    var currentHour = JASON.parse(localStorage.getItem("hour"));
+    currentHour = moment().hour();
+    $(".hour").each(function () {
+        var elementHour = parseInt($(this).attr("id"));
 
-// check applying css
-var timeCheck = $(".timeCheck");
-timeCheck.addClass("present");
+        // handle past, present, and future
+        if (elementHour < currentHour) {
+            $(this).removeClass(["present", "future"]).addClass("past");
+        }
+        else if (elementHour === currentHour) {
+            $(this).removeClass(["past", "future"]).addClass("present");
+        }
+        else {
+            $(this).removeClass(["past", "present"]).addClass("future");
+        }
+    });
+}
